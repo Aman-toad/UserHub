@@ -1,0 +1,52 @@
+# ================================
+# PHP / XAMPP / MySQL Project
+# ================================
+
+# Don't track OS-specific files
+.DS_Store
+Thumbs.db
+
+# Composer dependencies (if you use Composer later)
+vendor/
+
+# Node dependencies (if you use npm for some reason)
+node_modules/
+
+# Environment/config files
+.env
+.env.local
+config/config.php
+
+# IDE / editor files
+.vscode/
+.idea/
+*.code-workspace
+
+# Logs & cache
+*.log
+*.cache
+*.tmp
+
+# Uploads and generated files
+uploads/*
+!uploads/.gitkeep  # Keep folder, ignore contents
+
+# PDF, CSV or other export artifacts (optional)
+*.pdf
+*.csv
+
+# Backup or temp files
+*.bak
+*.sql
+*.zip
+
+# Session or error files (if generated)
+session_*
+error_log
+
+# Ignore database export file (if personal)
+userhub.sql
+
+# Ignore compiled CSS/JS (if you minify later)
+assets/css/*.min.css
+assets/js/*.min.js
