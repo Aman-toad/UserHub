@@ -2,8 +2,33 @@
 require_once '../includes/auth.php';
 require_once '../config/config.php';
 
+//adding pagination
+$limit = 10;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($page - 1) * $limit;
+
+$search = $_GET['search'] ?? '';
+$params = [];
+$where = '';
+
+if($search){
+  $where = "WHERE full_name LIKE ? OR username Like ? OR email LIKE ?";
+  $params = ["%$search%", "%$search%", "%$search%"];
+}
+
+$totalStmt = $pdo->prepare("SELECT COUNT(*) FROM users $where");
+$totalStmt->execute($params);
+$totalUsers = $totalStmt->fetchColumn();
+$totalPages = ceil($totalUsers / $limit);
+
+$query = "SELECT * FROM users $where ORDER BY created_at DESC LIMIT $limit OFFSET $offset";
+$stmt = $pdo->prepare($query);
+$stmt->execute($params);
+
+$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 if($_SESSION['role'] !== 'admin'){
-  die("Access Denied. Admin only.");
+  die("Access denied. Admin only.");
 } else{
   //getting all users
 $stmt = $pdo -> query("SELECT id, full_name, username, email, role FROM users");
@@ -37,16 +62,21 @@ $users = $stmt -> fetchAll (PDO::FETCH_ASSOC);
     <div class="container mt-5">
       <h2 class="mb-4">User List</h2>
 
+      <a href="../actions/export_csv.php" class="btn btn-success mb-3 float-end">
+        Export CSV
+      </a>
+
       <!-- search filter -->
-       <form class="row mb-4" method="get">
+      <form class="row mb-4" method="get">
         <div class="col-md-4">
-          <input type="text" name="search" class="form-control" placeholder="Seach by name, username, or email" value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
+          <input type="text" name="search" class="form-control" placeholder="Seach by name, username, or email"
+            value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
         </div>
         <div class="col-md-2">
           <button type="submit" class="btn btn-primary">Search</button>
           <a href="users.php" class="btn btn-secondary">Reset</a>
         </div>
-       </form>
+      </form>
 
       <table class="table table-bordered table-striped">
         <thead class="table-dark">
@@ -91,7 +121,18 @@ $users = $stmt -> fetchAll (PDO::FETCH_ASSOC);
           <?php endforeach; ?>
         </tbody>
       </table>
+
+      <nav>
+        <ul class="pagination">
+          <?php for($i = 1; $i <= $totalPages; $i++): ?>
+          <li class="page-item <? = $i == $page ? 'active' : '' ?>">
+            <a class="page-link" href="?<?= http_build_query(array_merge($_GET, ['page' => $i])) ?>">
+              <?= $i ?>
+            </a>
+          </li>
+          <?php endfor; ?>
+        </ul>
+      </nav>
     </div>
   </body>
-
 </html>
