@@ -1,6 +1,5 @@
-<?php 
-session_start();
-$user = $_SESSION['user'];
+<?php
+require_once '../includes/auth.php';
 ?>
 
 <!-- <?php include "includes/header.php"; ?> -->
@@ -9,8 +8,8 @@ $user = $_SESSION['user'];
     <div class="card mx-auto shadow" style="max-width: 500px;">
         <div class="card-body text-center">
             
-            <h4><?= htmlspecialchars($user['full_name']) ?></h4>
-            <p class="text-muted"><?= htmlspecialchars($user['email']) ?></p>
+            <h4><?= htmlspecialchars($_SESSION['username']) ?></h4>
+            <p class="text-muted"><?= htmlspecialchars($_SESSION['email']) ?></p>
 
             <a href="edit_profile.php" class="btn btn-primary mt-3">Edit Profile</a>
         </div>

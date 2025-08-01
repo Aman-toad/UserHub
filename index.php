@@ -172,7 +172,7 @@
     <div class="container">
       <div class="row mb-5">
         <div class="col-lg-8 mx-auto text-center">
-          <h2 class="display-5 fw-bold mb-4">Simple Pricing</h2>
+          <h2 class="display-5 fw-bold mb-4">Fake Pricing</h2>
           <p class="lead opacity-90">Choose the plan that's right for your business</p>
         </div>
       </div>

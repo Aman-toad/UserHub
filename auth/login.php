@@ -24,9 +24,17 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
       $_SESSION['user_id'] = $user['id'];
       $_SESSION['username'] = $user['username'];
       $_SESSION['role'] = $user['role'];
+      $_SESSION['email'] = $user['email'];
 
-      //redirect
-      header("Location: ../dashboard/index.php");
+      //redirect to admin or user based on roles;
+      if ($_SESSION['user']['role'] === 'admin') {
+        header("Location: ../dashboard/admin.php");
+        exit;
+      } else {
+        header("Location: ../dashboard/user.php");
+        exit;
+      }     
+
       exit;
     }else{
       $errors[] = "Invalid Credentials.";

@@ -1,7 +1,11 @@
 <?php
 require_once '../config/config.php';
 require_once '../includes/auth.php';
-require_once '../includes/checkAdmin.php';
+
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+  echo "Unauthorized Access!";
+  exit;
+}
 
 //adding pagination
 $limit = 10;

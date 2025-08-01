@@ -24,9 +24,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     // INSERT USER
     $stmt = $pdo -> prepare("INSERT INTO users (full_name, username, email, password) VALUES(?, ?, ?, ?)");
+    
     try{
-$stmt -> execute([$full_name, $username, $email, $hashedPassword]);
+    $stmt -> execute([$full_name, $username, $email, $hashedPassword]);
     $success = "User Register Successfully !";
+    header("Location: ../dashboard/user.php");
+    exit;
     } catch(PDOException $e){
       $errors[] = "Username or Email alread Exist.";
     }    
@@ -51,44 +54,44 @@ $stmt -> execute([$full_name, $username, $email, $hashedPassword]);
       <div class="row justify-content-center">
         <div class="col-lg-8">
           <div class="hero-card fade-in mt-3">
-              <div class="container">
-                <h1 class="display-4 fw-bold mb-3 text-center">Register</h1>
-                <?php if (!empty($errors)): ?>
-                <div class="alert alert-danger">
-                  <?php foreach ($errors as $e) echo "<div> $e </div>"; ?>
-                </div>
-                <?php elseif ($success): ?>
-                <div class="alert alert-success">
-                  <?=$success?>
-                </div>
-                <?php endif; ?>
-
-                <form action="" method="post">
-                  <div class="mb-3">
-                    <label class="form-label">Full Name</label>
-                    <input type="text" name="full_name" class="form-control" required>
-                  </div>
-                  <div class="mb-3">
-                    <label class="form-label">Username</label>
-                    <input type="text" name="username" class="form-control" required>
-                  </div>
-                  <div class="mb-3">
-                    <label class="form-label">Email address</label>
-                    <input type="email" name="email" class="form-control" required>
-                  </div>
-                  <div class="mb-3">
-                    <label class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" required>
-                  </div>
-                  <div class="mb-3">
-                    <label class="form-label">Confirm Password</label>
-                    <input type="password" name="confirm_password" class="form-control" required>
-                  </div>
-                  <button class="mt-3 btn btn-primary-custom btn-lg">
-                    Register
-                  </button>
-                </form>
+            <div class="container">
+              <h1 class="display-4 fw-bold mb-3 text-center">Register</h1>
+              <?php if (!empty($errors)): ?>
+              <div class="alert alert-danger">
+                <?php foreach ($errors as $e) echo "<div> $e </div>"; ?>
               </div>
+              <?php elseif ($success): ?>
+              <div class="alert alert-success">
+                <?=$success?>
+              </div>
+              <?php endif; ?>
+
+              <form action="" method="post">
+                <div class="mb-3">
+                  <label class="form-label">Full Name</label>
+                  <input type="text" name="full_name" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Username</label>
+                  <input type="text" name="username" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Email address</label>
+                  <input type="email" name="email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Password</label>
+                  <input type="password" name="password" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Confirm Password</label>
+                  <input type="password" name="confirm_password" class="form-control" required>
+                </div>
+                <button class="mt-3 btn btn-primary-custom btn-lg">
+                  Register
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
