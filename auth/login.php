@@ -43,31 +43,43 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - UserHub</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
   </head>
 
-  <body class='bg-light'>
-    <div class="container mt-5">
-      <h2>Login</h2>
+  <body>
 
-      <?php if (!empty($errors)): ?>
-      <div class="alert alert-danger">
-        <?php foreach ($errors as $e) echo "<div>$e</div>"; ?>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="hero-card fade-in mt-3">
+            <div class="container mt-2">
+              <h1 class="text-center display-4 fw-bold mb-3">Login</h1>
+
+              <?php if (!empty($errors)): ?>
+              <div class="alert alert-danger">
+                <?php foreach ($errors as $e) echo "<div>$e</div>"; ?>
+              </div>
+              <?php endif; ?>
+
+              <form method="POST">
+                <div class="mb-3">
+                  <label class="form-label">Email or Username</label>
+                  <input type="text" name="email_or_username" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Password</label>
+                  <input type="password" name="password" class="form-control" required>
+                </div>
+                <button class="mt-3 btn btn-primary-custom btn-md">
+                  Login
+                </button>
+              </form>
+
+              <p class="mt-3">Don't have an account? <a href="register.php" class="text-dark">Register here</a></p>
+            </div>
+          </div>
+        </div>
       </div>
-      <?php endif; ?>
-
-      <form method="POST">
-        <div class="mb-3">
-          <label class="form-label">Email or Username</label>
-          <input type="text" name="email_or_username" class="form-control" required>
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Password</label>
-          <input type="password" name="password" class="form-control" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Login</button>
-      </form>
-
-      <p class="mt-3">Don't have an account? <a href="register.php">Register here</a></p>
     </div>
   </body>
 

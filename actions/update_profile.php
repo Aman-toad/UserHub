@@ -17,10 +17,10 @@ if($stmt -> execute()){
   $_SESSION['user']['full_name'] = $full_name;
   $_SESSION['user']['email'] = $email;
 
-  header("Location: ../dashboaed/profile.php?status=success");
+  header("Location: ../dashboard/profile.php?status=success");
   exit;
 }else{
-  header("Location: ../dashboaed/profile.php?status=error");
+  header("Location: ../dashboard/profile.php?status=error");
   exit
 }
 ?>
