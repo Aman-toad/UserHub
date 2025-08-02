@@ -5,6 +5,11 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
   echo "Unauthorized Access!";
   exit;
 }
+
+if(isset($_SESSION['success'])){
+  echo "<p>{$_SESSION['success']}</p>";
+  unset($_SESSION['success']);
+}
 ?>
 
 <!DOCTYPE html>

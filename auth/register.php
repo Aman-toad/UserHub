@@ -28,6 +28,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     try{
     $stmt -> execute([$full_name, $username, $email, $hashedPassword]);
     $success = "User Register Successfully !";
+
+    session_start();
+    $_SESSION['user_id'] = $newUserId;
+    $_SESSION['username'] = $username;
+    $_SESSION['role'] = 'user';
+    $_SESSION['full_name'] = $full_name;
+    $_SESSION['success'] = "Welcome, $username! Register Successfully";
+
     header("Location: ../dashboard/user.php");
     exit;
     } catch(PDOException $e){

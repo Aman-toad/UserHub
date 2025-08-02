@@ -23,11 +23,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
       $_SESSION['user_id'] = $user['id'];
       $_SESSION['username'] = $user['username'];
+      $_SESSION['full_name'] = $user['full_name'];
       $_SESSION['role'] = $user['role'];
       $_SESSION['email'] = $user['email'];
 
       //redirect to admin or user based on roles;
-      if ($_SESSION['user']['role'] === 'admin') {
+      if ($_SESSION['role'] === 'admin') {
         header("Location: ../dashboard/admin.php");
         exit;
       } else {
