@@ -70,17 +70,19 @@ userhub/
 
 ---
 
-## ✨ Features
+## 🔑 Core Features
 
-- 🔐 Login & Registration with `password_hash()`
-- 🧑 User Dashboard
-- 👮 Role-Based Access (Admin/User)
-- 🧾 CRUD: Add, Edit, Delete Users
-- 🖼 File Upload: Profile Pictures
-- 📄 Export Data as CSV
-- 📤 PDF Generation for Reports/Users
-- 📧 Email Sending on Register *(optional)*
-- 🔍 Search + Sort + Pagination *(in users table)*
+| Feature | Description |
+|--------|-------------|
+| 🔐 Authentication | Register/Login with hashed passwords |
+| 👤 User Profile | View and edit personal info with image upload |
+| 🧑‍💻 Admin Panel | Role-based access for full user CRUD |
+| 🗂️ Pagination + Search | Easily browse and manage users |
+| 📤 Export Data | CSV and PDF export for user lists |
+| ✉️ Email System | Send emails using PHPMailer (welcome, alerts) |
+| 🔁 Change Password | Secure password update flow |
+| 📱 Responsive UI | Fully mobile-friendly (Bootstrap 5) |
+| 🧠 Access Control | Session- and role-based protection |
 
 ---
 
