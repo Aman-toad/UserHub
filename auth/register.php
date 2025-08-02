@@ -54,6 +54,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     <title>Resister - UserHub</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/common.css">
   </head>
   </head>
 

@@ -61,7 +61,13 @@ $users = $stmt -> fetchAll (PDO::FETCH_ASSOC);
   <head>
     <title>User List - Userhub</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/common.css">
   </head>
+
+  <style>
+
+  </style>
 
   <body class="bg-light">
     <div class="container mt-5">
@@ -72,16 +78,24 @@ $users = $stmt -> fetchAll (PDO::FETCH_ASSOC);
       </a>
 
       <!-- search filter -->
-      <form class="row mb-4" method="get">
-        <div class="col-md-4">
-          <input type="text" name="search" class="form-control" placeholder="Seach by name, username, or email"
-            value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
-        </div>
-        <div class="col-md-2">
-          <button type="submit" class="btn btn-primary">Search</button>
-          <a href="users.php" class="btn btn-secondary">Reset</a>
-        </div>
-      </form>
+      <form class="row g-2 align-items-center mb-4" method="get">
+      <div class="col-md-6 col-lg-4">
+        <input 
+          type="text" 
+          name="search" 
+          class="form-control" 
+          placeholder="Search by name, username, or email"
+          value="<?= htmlspecialchars($_GET['search'] ?? '') ?>"
+        >
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+      <div class="col-auto">
+        <a href="users.php" class="btn btn-secondary">Reset</a>
+      </div>
+    </form>
+
 
       <table class="table table-bordered table-striped">
         <thead class="table-dark">
